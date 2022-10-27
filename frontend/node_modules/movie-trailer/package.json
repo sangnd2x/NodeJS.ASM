@@ -1,0 +1,53 @@
+{
+  "name": "movie-trailer",
+  "version": "2.0.6",
+  "description": "Get movie trailer url(s): Oceans Eleven ➔ http://path/to/trailer",
+  "license": "MIT",
+  "main": "index.js",
+  "browser": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lacymorrow/movie-trailer"
+  },
+  "bin": {
+    "movie-trailer": "cli.js"
+  },
+  "author": {
+    "name": "Lacy Morrow",
+    "email": "me@lacymorrow.com",
+    "url": "http://lacymorrow.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "ava --verbose"
+  },
+  "files": [
+    "cli.js",
+    "index.js"
+  ],
+  "keywords": [
+    "cli",
+    "bin",
+    "app",
+    "movie",
+    "trailer",
+    "url",
+    "uri",
+    "path"
+  ],
+  "devDependencies": {
+    "ava": "^0.25.0"
+  },
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/lacymorrow/movie-trailer/issues"
+  },
+  "homepage": "https://github.com/lacymorrow/movie-trailer",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "meow": "^4.0.0",
+    "node-fetch": "^2.1.2"
+  }
+}

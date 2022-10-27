@@ -1,0 +1,13 @@
+GET http://localhost:5500/api/movies/discover/28/RYoOcWM4JW
+
+###
+
+POST http://localhost:5500/api/movies/video/8qlOkxz4wq
+Content-Type: application/json
+
+{
+    "movieId": 629176
+}
+
+### 
+GET http://localhost:5500/api/movies/discover/28/8qlOkxz4wq

@@ -1,15 +1,16 @@
 const API_KEY = '504b85f6fe0a10a9c7f35945e14e7ddf';
+const user_token = '8qlOkxz4wq';
 
 const requests = {
-	fetchTrending: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
+	fetchTrending: `http://localhost:5500/api/movies/trending/${user_token}`,
 	fetchNetflixOriginals: `/discover/tv?api_key=${API_KEY}&with_network=123`,
-	fetchTopRated: `/movie/top_rated?api_key=${API_KEY}&language=en-US`,
-	fetchActionMovies: `/discover/movie?api_key=${API_KEY}&with_genres=28`,
-	fetchComedyMovies: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
-	fetchHorrorMovies: `/discover/movie?api_key=${API_KEY}&with_genres=27`,
-	fetchRomanceMovies: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
-	fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
-	fetchSearch: `/search/movie?api_key=${API_KEY}&language=en-US`,
+	fetchTopRated: `http://localhost:5500/api/movies/top-rate/${user_token}`,
+	fetchActionMovies: `http://localhost:5500/api/movies/discover/28/${user_token}`,
+	fetchComedyMovies: `http://localhost:5500/api/movies/discover/35/${user_token}`,
+	fetchHorrorMovies: `http://localhost:5500/api/movies/discover/27/${user_token}`,
+	fetchRomanceMovies: `http://localhost:5500/api/movies/discover/10749/${user_token}`,
+	fetchDocumentaries: `http://localhost:5500/api/movies/discover/99/${user_token}`,
+	fetchSearch: `http://localhost:5500/api/movies/search/${user_token}`,
 };
 
 export default requests;

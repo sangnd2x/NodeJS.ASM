@@ -5,15 +5,33 @@ import SearchResult from '../../components/search/SearchResult';
 import './Search.css';
 
 const Search = () => {
-	const [query, setQuery] = useState('');
+	const [results, setReults] = useState([]);
 	const [searchInput, setSearchInput] = useState('');
 
 	const handleSearch = () => {
-		setQuery(searchInput);
-	}
 
+		const data = { 
+			query: searchInput
+		}
+
+		const postSearch = async () => {
+			await fetch('http://localhost:5500/api/movies/search', {
+				method: 'POST',
+				body: JSON.stringify(data),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+				.then(res => res.json())
+				.then(data => setReults(data.results))
+				.catch(err => console.log(err));
+		}
+		
+		postSearch();
+	}
+	
 	const resetSearch = () => {
-		setQuery('');
+		setReults('');
 		setSearchInput('');
 	}
 
@@ -72,7 +90,7 @@ const Search = () => {
 					</div>
 				</form>
 			</div>
-			<SearchResult query={query} />
+			<SearchResult results={results} />
 		</div>
 	);
 };

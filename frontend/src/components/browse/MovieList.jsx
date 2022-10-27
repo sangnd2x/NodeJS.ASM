@@ -6,6 +6,7 @@ import './MovieList.css';
 
 const base_url = 'https://image.tmdb.org/t/p/original';
 const movies_limit = 10;
+const user_token = '8qlOkxz4wq';
 
 function MovieList({ title, fetchUrl, isLargeRow }) {
 	const [movies, setMovies] = useState([]);
@@ -27,17 +28,38 @@ function MovieList({ title, fetchUrl, isLargeRow }) {
 			setTrailerUrl('');
 		} else {
 			setSelectedMovie(movie);
-			movieTrailer(movie?.title || '')
-			.then((url) => {
-				const urlParams = new URLSearchParams(new URL(url).search);
-				setTrailerUrl(urlParams.get('v'));
-			})
-			.catch((error) => console.log(error));
+			// movieTrailer(movie?.title || '')
+			// .then((url) => {
+			// 	const urlParams = new URLSearchParams(new URL(url).search);
+			// 	setTrailerUrl(urlParams.get('v'));
+			// })
+			// 	.catch((error) => console.log(error));
+			
+			const data = {
+				movieId: movie.id
+			}
+
+			const post = async () => {
+				await fetch(`http://localhost:5500/api/movies/video/${user_token}`, {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+				.then(res => res.json())
+				.then(data => {
+					setTrailerUrl(`${data[0].key}`);
+				})
+				.catch(err => console.log(err));
+			}
+
+			post();
 		}
 	};
 
-	movies.sort((a, b) => b.popularity - a.popularity);
-	movies.splice(movies_limit);
+	// movies.sort((a, b) => b.popularity - a.popularity);
+	// movies.splice(movies_limit);
 
 	return (
 		<div className='row'>

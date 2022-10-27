@@ -7,24 +7,20 @@ import './SearchResult.css';
 
 const base_url = 'https://image.tmdb.org/t/p/original';
 
-const SearchResult = ({query}) => {
+const SearchResult = ({results}) => {
 	const [movies, setMovies] = useState([]);
 
-	const url = `${requests.fetchSearch}&query=${query}`;
+	const url = `${requests.fetchSearch}`;
 
 	useEffect(() => {
-		async function fetchData() {
-			const request = await axios.get(url);
-			setMovies(request.data.results);
-			return request;
-		}
-
-		if (query) {
-			fetchData();
+		if (results) {
+			setMovies(results);
 		} else {
 			setMovies([]);
 		}
-	}, [url, query]);
+	}, [url, results]);
+
+	console.log(movies);
 
 	return(
 		<div className='row'>

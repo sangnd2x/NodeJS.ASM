@@ -4,8 +4,17 @@
   "description": "Funix ASM1 server",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "author": "sangnd2x",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.18.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "nodemon": "^2.0.20"
+  }
 }
