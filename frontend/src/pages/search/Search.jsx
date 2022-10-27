@@ -7,6 +7,7 @@ import './Search.css';
 const Search = () => {
 	const [results, setReults] = useState([]);
 	const [searchInput, setSearchInput] = useState('');
+	const user_token = '8qlOkxz4wq';
 
 	const handleSearch = () => {
 
@@ -15,7 +16,7 @@ const Search = () => {
 		}
 
 		const postSearch = async () => {
-			await fetch('http://localhost:5500/api/movies/search', {
+			await fetch(`http://localhost:5500/api/movies/search/${user_token}`, {
 				method: 'POST',
 				body: JSON.stringify(data),
 				headers: {

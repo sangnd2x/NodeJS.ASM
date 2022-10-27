@@ -121,8 +121,8 @@ exports.getTrailer = (req, res, netx) => {
 exports.searchMovies = (req, res, next) => {
     Movies.fetchAll(movies => {
         const query = req.body.query;
-        const regex = /\s/g;
-        if (!query || query === '' || query.match(regex)) {
+        // const regex = /\s/g;
+        if (!query || query === '') {
             res.statusCode = 400;
             res.setHeader('Content-type', 'application/json');
             res.write(JSON.stringify({ msg: 'Not found keyword parram' }));
