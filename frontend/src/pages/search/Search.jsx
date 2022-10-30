@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Nav from '../../components/browse/Nav';
 import SearchResult from '../../components/search/SearchResult';
@@ -7,12 +7,32 @@ import './Search.css';
 const Search = () => {
 	const [results, setReults] = useState([]);
 	const [searchInput, setSearchInput] = useState('');
+	const [searchGenre, setSearchGenre] = useState('');
+	const [searchType, setSearchType] = useState('');
+	const [searchLanguage, setSearchLanguage] = useState('');
+	const [genres, setGenres] = useState([]);
+	const [mediaTypes, setMediaTypes] = useState([]);
 	const user_token = '8qlOkxz4wq';
 
+	useEffect(() => {
+		fetch(`http://localhost:5500/api/movies/genres/${user_token}`)
+			.then(res => res.json())
+			.then(data => setGenres(data))
+			.catch(err => console.log(err));
+		
+		fetch(`http://localhost:5500/api/movies/media-types/${user_token}`)
+			.then(res => res.json())
+			.then(data => setMediaTypes(data))
+			.catch(err => console.log(err));
+	}, []);
+	
 	const handleSearch = () => {
 
 		const data = { 
-			query: searchInput
+			query: searchInput,
+			genre: searchGenre,
+			type: searchType,
+			language: searchLanguage
 		}
 
 		const postSearch = async () => {
@@ -34,6 +54,9 @@ const Search = () => {
 	const resetSearch = () => {
 		setReults('');
 		setSearchInput('');
+		setSearchGenre('');
+		setSearchType('');
+		setSearchLanguage('');
 	}
 
 	return (
@@ -67,6 +90,34 @@ const Search = () => {
 						</div>
 						<div className='advance-search'>
 							<div className='row third'>
+								<div>
+									<select name="genres" id="genres" value={searchGenre} onChange={(e) => setSearchGenre(e.target.value)}>
+										<option hidden>Select Genre</option>
+										{genres.map(genre => {
+											return (
+												<option value={genre.name} key={genre.id}>{genre.name}</option>
+											);
+										})}
+									</select>
+								</div>
+								<div>
+									<select name="mediaTypes" id="mediaTypes" value={searchType}  onChange={(e) => setSearchType(e.target.value)}>
+										<option hidden>Select Type</option>
+										{mediaTypes.map(type => {
+											return (
+												<option value={type} key={mediaTypes.indexOf(type)}>{type}</option>
+											);
+										})}
+									</select>
+								</div>
+								<div>
+									<select name="languages" id="languages" value={searchLanguage} onChange={(e) => setSearchLanguage(e.target.value)}>
+										<option hidden>Select Language</option>
+										<option value="en">English</option>
+										<option value="jp">Japanese</option>
+										<option value="kr">Korean</option>
+									</select>
+								</div>
 								<div className='input-field'>
 									<div className='result-count'>
 										

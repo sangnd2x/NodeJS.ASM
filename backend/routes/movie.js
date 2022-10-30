@@ -23,6 +23,12 @@ router.get('/api/movies/discover/:token',auth.isAuthorized, movieController.getG
 router.post('/api/movies/video/:token',auth.isAuthorized, movieController.getTrailer);
 
 // POST search movie
-router.post('/api/movies/search/:token',auth.isAuthorized, movieController.searchMovies);
+router.post('/api/movies/search/:token', auth.isAuthorized, movieController.searchMovies);
+
+// GET all genres
+router.get('/api/movies/genres/:token', auth.isAuthorized, movieController.fetchAllGenres);
+
+// GET all media types
+router.get('/api/movies/media-types/:token', auth.isAuthorized, movieController.fetchAllMediaType);
 
 module.exports = router;

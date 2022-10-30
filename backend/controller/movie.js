@@ -1,9 +1,9 @@
-const Genre = require('../models/genreList');
-const Media = require('../models/mediaType');
+const Genres = require('../models/genreList');
+const MediaTypes = require('../models/mediaType');
 const Movies = require('../models/moviesList');
 const UserToken = require('../models/userToken');
 const Videos = require('../models/videoList');
-const { trendingPaging, topRatePaging, genresPaging, searchPaging } = require('../utils/paging');
+const { trendingPaging, topRatePaging, genresPaging, basicSearchPaging, advancedSearchPaging } = require('../utils/paging');
 const GenreList = require('../data/genreList.json');
 const VideosList = require('../data/videoList.json');
 
@@ -71,7 +71,6 @@ exports.getGenreMoviesError = (req, res, next) => {
 exports.getTrailer = (req, res, netx) => {
     Videos.fetchAll(video => {
         const filmId = +req.body.movieId;
-        console.log(filmId);
         
         if (!filmId) {
             res.statusCode = 400;
@@ -102,7 +101,6 @@ exports.getTrailer = (req, res, netx) => {
                 if (isSuitable !== []) {
                     const latestPublishedDate = new Date(Math.max(...isSuitable.map(e => new Date(e.published_at)))).toISOString();
                     const latestTrailer = isSuitable.filter(s => s.published_at === latestPublishedDate);
-                    console.log(latestTrailer)
                     res.statusCode = 200;
                     res.send(latestTrailer);
                 } else {
@@ -121,7 +119,10 @@ exports.getTrailer = (req, res, netx) => {
 exports.searchMovies = (req, res, next) => {
     Movies.fetchAll(movies => {
         const query = req.body.query;
-        // const regex = /\s/g;
+        const genre = req.body.genre;
+        const type = req.body.type;
+        const language = req.body.language;
+
         if (!query || query === '') {
             res.statusCode = 400;
             res.setHeader('Content-type', 'application/json');
@@ -131,9 +132,34 @@ exports.searchMovies = (req, res, next) => {
         } else {
             const page = req.query.page ? parseInt(req.query.page) : 1;
             const limit = 20;
-            const results = searchPaging(movies, page, limit, query);
-            res.statusCode = 200;
-            res.send(results);
+            // basic search with no genre, type and language provided
+            if (!genre && !type && !language) {
+                const results = basicSearchPaging(movies, page, limit, query);
+                res.statusCode = 200;
+                res.send(results);
+            }
+            // advanced search with genre, type or language provided
+            if (genre || type || language) {
+                const results = advancedSearchPaging(movies, page, limit, query, genre, type, language);
+                res.statusCode = 200;
+                res.send(results);
+            }
         }
+    })
+}
+
+// Fetch all genres
+exports.fetchAllGenres = (req, res, next) => {
+    Genres.fetchAll(genres => {
+        res.statusCode = 200;
+        res.send(genres);
+    })
+}
+
+// Fetch all media types
+exports.fetchAllMediaType = (req, res, next) => {
+    MediaTypes.fetchAll(media => {
+        res.statusCode = 200;
+        res.send(media);
     })
 }

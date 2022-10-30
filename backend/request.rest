@@ -11,3 +11,14 @@ Content-Type: application/json
 
 ### 
 GET http://localhost:5500/api/movies/discover/28/8qlOkxz4wq
+
+###
+POST http://localhost:5500/api/movies/search/8qlOkxz4wq
+Content-Type: application/json
+
+{
+    "query": "brad pitt",
+    "genre": "",
+    "type": "person",
+    "language": "en"
+}

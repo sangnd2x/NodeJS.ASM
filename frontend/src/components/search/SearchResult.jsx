@@ -19,9 +19,7 @@ const SearchResult = ({results}) => {
 			setMovies([]);
 		}
 	}, [url, results]);
-
-	console.log(movies);
-
+	
 	return(
 		<div className='row'>
 			<h2>Search Result</h2>
