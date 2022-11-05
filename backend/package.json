@@ -1,20 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Funix ASM1 server",
-  "main": "app.js",
+  "description": "asm server",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "sangnd2x",
-  "license": "ISC",
-  "devDependencies": {
-    "express": "^4.18.2"
-  },
-  "dependencies": {
-    "body-parser": "^1.20.1",
-    "cors": "^2.8.5",
-    "nodemon": "^2.0.20"
-  }
+  "author": "sangnd",
+  "license": "ISC"
 }
