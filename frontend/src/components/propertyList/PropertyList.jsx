@@ -1,17 +1,17 @@
 import "./propertyList.css";
 
-const PropertyList = () => {
+const PropertyList = (props) => {
   return (
     <div className="pList">
       <div className="pListItem">
         <img
-          src="https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o="
+          src={"https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o="}
           alt=""
           className="pListImg"
         />
         <div className="pListTitles">
           <h1>Hotels</h1>
-          <h2>233 hotels</h2>
+          <h2>{props.hotel.length > 0 ? `${props.hotel.length} hotels` : '0 hotel'}</h2>
         </div>
       </div>
       <div className="pListItem">
@@ -22,7 +22,7 @@ const PropertyList = () => {
         />
         <div className="pListTitles">
           <h1>Apartments</h1>
-          <h2>2331 hotels</h2>
+          <h2>{props.apt.length > 0 ? `${props.apt.length} apartments` : '0 apartment'}</h2>
         </div>
       </div>
       <div className="pListItem">
@@ -33,7 +33,7 @@ const PropertyList = () => {
         />
         <div className="pListTitles">
           <h1>Resorts</h1>
-          <h2>2331 hotels</h2>
+          <h2>{props.resorts.length > 0 ? `${props.resorts.length} resorts` : '0 resort'} resorts</h2>
         </div>
       </div>
       <div className="pListItem">
@@ -44,7 +44,7 @@ const PropertyList = () => {
         />
         <div className="pListTitles">
           <h1>Villas</h1>
-          <h2>2331 hotels</h2>
+          <h2>{props.villas.length > 0 ? `${props.villas.length} villas` : '0 villa'}</h2>
         </div>
       </div>
       <div className="pListItem">
@@ -55,7 +55,7 @@ const PropertyList = () => {
         />
         <div className="pListTitles">
           <h1>Cabins</h1>
-          <h2>2331 hotels</h2>
+          <h2>{props.cabins.length > 0 ? `${props.cabins.length} cabins` : '0 cabin'}</h2>
         </div>
       </div>
     </div>

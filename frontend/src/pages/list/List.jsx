@@ -4,10 +4,11 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
+import axios from "axios";
 
 const List = () => {
   const location = useLocation();
@@ -15,10 +16,27 @@ const List = () => {
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
+  const [user, setUser] = useState(location.state.user);
+
+  const [hotels, setHotels] = useState([]);
+
+  console.log(hotels);
+
+  useEffect(() => {
+    const data = {
+      destination: location.state.destination,
+      date: location.state.date,
+      options: location.state.options
+    }
+
+    axios.post('http://localhost:5000/search', data)
+      .then(res => setHotels(res.data))
+      .catch(err => console.log(err));
+  }, [])
 
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} />
       <Header type="list" />
       <div className="listContainer">
         <div className="listWrapper">
@@ -89,9 +107,14 @@ const List = () => {
             <button>Search</button>
           </div>
           <div className="listResult">
+            {
+              hotels.map(hotel => (
+                <SearchItem hotel={hotel} date={location.state.date} options={options} key={hotel._id} user={user} />
+              ))
+            }
+            {/* <SearchItem />
             <SearchItem />
-            <SearchItem />
-            <SearchItem />
+            <SearchItem /> */}
           </div>
         </div>
       </div>

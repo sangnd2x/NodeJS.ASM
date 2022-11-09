@@ -1,0 +1,65 @@
+.header {
+    background-color: #003580;
+    color: white;
+    display: flex;
+    justify-content: left;
+    position: relative;
+    padding: 30px 0px 0px 50px;
+  }
+  
+.headerContainer {
+    width: 100%;
+    max-width: 1024px;
+    margin: 20px 0px 100px 0px;
+}
+
+.headerContainer.listMode {
+    margin: 20px 0px 0px 0px;
+}
+
+.headerList {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.headerListItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.headerListItem.active {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.transactions {
+    margin: 20px 80px 0px 80px;
+    display: grid;
+}
+
+th {
+    background-color: #33A5C1;
+    text-align: left;
+    padding: 15px;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+td {
+    padding: 10px;
+}
+
+td::first-letter {
+    text-transform: capitalize;
+}
+
+span {
+    font-weight: lighter;
+    padding: 5px;
+    border-radius: 5px;
+}

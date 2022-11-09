@@ -14,8 +14,10 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Header = ({ type }) => {
+const Header = (props, { type }) => {
+  const user = props.user;
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
@@ -44,7 +46,7 @@ const Header = ({ type }) => {
   };
 
   const handleSearch = () => {
-    navigate("/hotels", { state: { destination, date, options } });
+    navigate("/hotels", { state: { destination, date, options, user } });
   };
 
   return (

@@ -1,0 +1,153 @@
+.wrapper {
+  margin: 20px 120px 20px 120px;
+}
+
+.hotel {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.hotel__details{
+  flex: 2;
+  margin-right: 30px;
+  text-align: justify;
+  padding-right: 150px;
+}
+
+.hotel__booking {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.box {
+  background-color:aliceblue;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.box>h1 {
+  margin-bottom: 10px;
+}
+
+.box>button {
+  background-color: #0071c2;
+  color: white;
+  border-radius: 4px;
+  height: 35px;
+  border: none;
+}
+
+.date__info {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.date__info-date {
+  flex:1;
+}
+
+.date__info-info {
+  flex: 2;
+  margin-left: 40px;
+}
+
+.date__info-info-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.date__info-info-input>input {
+  height: 40px;
+  border-radius: 3px;
+  margin: 5px 0px 15px 0px;
+}
+
+.room {
+  margin-bottom: 20px;
+}
+
+.room__type {
+  display: flex;
+}
+
+span {
+  font-weight: bold;
+}
+
+.room__type_n {
+  flex: 1;
+  display: flex;
+  margin-right: 30px;
+}
+
+.room_type-number-list {
+  display: flex;
+  flex-direction: row;
+  margin-top: 35px;
+}
+
+.room_type-number-list>li {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-right: 3px;
+}
+
+.payment__details {
+  display: flex;
+}
+
+.payment__details-method{
+  flex: 1;
+}
+
+.payment__details-method>select {
+  height: 40px;
+  background-color: lightgray;
+  width: 300px;
+  border-radius: 4px;
+}
+
+.payment__details-reserve {
+  display: flex;
+  flex: 2;
+}
+
+.payment__details-reserve>button {
+  background-color: #0071c2;
+  color: white;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 1260) {
+  .wrapper {
+    margin: 20px;
+  }
+
+  .hotel__details {
+    margin-right: 10px;
+    padding-right: 10px
+  }
+
+  .payment__details-reserve {
+    margin-left: 40px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .wrapper {
+    margin: 20px;
+  }
+
+  .hotel__details {
+    padding-right: 10px
+  }
+
+  .payment__details-reserve {
+    margin-left: 80px;
+  }
+}

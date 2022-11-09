@@ -14,6 +14,10 @@
   justify-content: space-between;
 }
 
+.navItems {
+  display: flex;
+}
+
 .logo{
   font-weight: 500;
 }
@@ -23,5 +27,14 @@
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+  color: #003580;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
   color: #003580;
 }
