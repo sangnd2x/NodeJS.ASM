@@ -1,0 +1,55 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.info {
+    margin: 20px auto;
+}
+
+.nav>h3 { 
+    margin: 10px 0px 10px 25px;
+}
+
+.home__container {
+    display: flex;
+}
+
+.info__container {
+    margin: 20px;
+    box-shadow: 5px 5px 15px lightgray;
+    padding: 30px 20px 20px 20px;
+}
+
+table { 
+    border: 1px solid lightgray;
+    margin-top: 20px;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+tr {
+    border: 1px solid lightgray
+}
+
+td, th {
+    padding-right: 15px;
+}
+
+th>input {
+    margin-left: 4px;
+}
+
+
+td {
+    padding-left: 5px;
+}
+
+th>span {
+    border-left: 1px solid lightgray;
+    margin-right: 5px;
+}

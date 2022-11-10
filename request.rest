@@ -34,3 +34,13 @@ Content-Type: application/json
     "room": 1
   }
 }
+
+###
+POST http://localhost:5000/register
+Content-Type: application/json
+
+{
+  "username": "sang2x",
+  "password": "123",
+  "isAdmin": true
+}

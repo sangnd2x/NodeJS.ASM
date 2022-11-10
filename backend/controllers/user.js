@@ -4,11 +4,11 @@ const mongodb = require('mongodb');
 const transaction = require('../models/transaction');
 
 exports.registerUser = (req, res, next) => {
-    const username = req.body.username;
-    const password = req.body.password;
+    const { username, password, fullName, phoneNumber, email, isAdmin } = req.body;
     const newUser = new User({
         username: username,
-        password: password
+        password: password,
+        isAdmin: isAdmin
     });
     User.find({ 'username': username })
         .then(user => {
@@ -37,7 +37,7 @@ exports.login = (req, res, next) => {
                 if (user.length > 0) {
                     if (user[0].password === password) {
                         req.user = user[0];
-                        return res.status(200).json({ message: 'Successfully Logged In' });
+                        return res.status(200).send(user[0]);
                     } else {
                         return res.status(400).json({ message: 'Password Is Not Correct' });
                     }

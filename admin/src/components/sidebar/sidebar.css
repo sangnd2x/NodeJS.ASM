@@ -1,0 +1,38 @@
+.top {
+    margin: 20px 0px 20px 20px;
+}
+
+.title {
+    margin-top: 20px;
+}
+
+li {
+    margin: 5px 0px 5px 0px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+li:hover{
+    cursor: pointer;
+}
+
+li>span{
+    margin-top: 3px;
+}
+
+ul {
+    display: flex;
+}
+
+.vl {
+    border-right: 1px solid lightgray;
+    height: 100vw;
+    margin-left: 50px;
+}
+
+.icon {
+    color: #6F41FF;
+    margin-right: 10px;
+    margin-top:5px;
+}
