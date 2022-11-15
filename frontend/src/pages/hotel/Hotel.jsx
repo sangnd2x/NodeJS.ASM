@@ -11,7 +11,7 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Hotel = (props) => {
   const location = useLocation();
@@ -21,8 +21,6 @@ const Hotel = (props) => {
   const [user, setUser] = useState(location.state.user);
   const [hotel, setHotel] = useState(location.state.hotel);
   const [options, setOptions] = useState(location.state.options);
-
-  console.log(location.state);
 
   const navigate = useNavigate();
 

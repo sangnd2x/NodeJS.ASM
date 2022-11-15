@@ -31,6 +31,11 @@ const transactionSchema = new Schema({
     status: {
         type: String,
         required: true
+    },
+    createAt: {
+        type: Date,
+        required: true,
+        default: Date.now
     }
 });
 

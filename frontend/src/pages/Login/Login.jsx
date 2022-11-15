@@ -28,6 +28,7 @@ const Login = () => {
                 .then(res => res.json())
                 .then(data => {
                     const statusText = data.message;
+                    console.log(statusText);
                     if (statusText === 'Successfully Logged In') {
                         navigate('/', { state: { user } });
                         // alert(statusText);

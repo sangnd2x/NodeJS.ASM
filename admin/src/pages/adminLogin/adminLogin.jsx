@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './login.css';
+import './adminLogin.css';
 
-const Login = () => {
+const AdminLogin = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -17,7 +17,7 @@ const Login = () => {
         }
 
         const post = () => {
-            fetch('http://localhost:5000/login', {
+            fetch('http://localhost:5000/admin/login', {
                 method: 'POST',
                 body: JSON.stringify(user),
                 headers: {
@@ -29,8 +29,8 @@ const Login = () => {
                     if (data.isAdmin) {
                         navigate('/dashboard');
                     } else if (!data.isAdmin) {
-                        return alert('Not admin')
-                    } else if (data.message === 'User Not Found') {
+                        return alert('You must be admin to log in!')
+                    } else if (data.message === 'User Not Found!') {
                         return alert(data.message);
                     } else {
                         return alert(data.message)
@@ -56,4 +56,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default AdminLogin;

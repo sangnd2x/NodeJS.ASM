@@ -18,7 +18,6 @@ const Booking = () => {
     }]);
     const [user, setUser] = useState(location.state.user);
     const [hotel, setHotel] = useState(location.state.hotel);
-    console.log(hotel);
     const [options, setOptions] = useState(location.state.options);
     const [rooms, setRooms] = useState([]);
     const [checked, setChecked] = useState(false);
@@ -75,7 +74,7 @@ const Booking = () => {
     }, []);
 
     // Room selection
-    const handleChange = (e, roomPrice) => {
+    const handleChange = (e, roomPrice, roomId) => {
         let isChecked = e.target.checked;
         let roomNum = +e.target.value;
         let rprice = roomPrice;
@@ -99,32 +98,36 @@ const Booking = () => {
     }
 
     const handleReserve = () => {
-        const data = {
-            user: user.username,
-            hotel: hotel._id,
-            room: roomNumber,
-            dateStart: date[0].startDate,
-            dateEnd: date[0].endDate,
-            price: totalBill,
-            payment: paymentMethod,
-            status: 'booked'
-        }
-
-        const post = () => {
-            fetch('http://localhost:5000/reservation', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(res => res.json())
-                .then(data => console.log(data.message))
-                .catch(err => console.log(err))
-        }
-
-        post();
-        navigate('/transaction', {state: {user, hotel, roomNumber}});
+        if (!user) {
+            alert('You must sign in to make reservation!');
+        } else {
+            const data = {
+                user: user.username,
+                hotel: hotel._id,
+                room: roomNumber,
+                dateStart: date[0].startDate,
+                dateEnd: date[0].endDate,
+                price: totalBill,
+                payment: paymentMethod,
+                status: 'booked'
+            }
+    
+            const post = () => {
+                fetch('http://localhost:5000/reservation', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => console.log(data.message))
+                    .catch(err => console.log(err))
+            }
+    
+            post();
+            navigate('/transaction', { state: { user, hotel, roomNumber } });
+        } 
     }
 
     return (
@@ -191,7 +194,7 @@ const Booking = () => {
                                         {room.roomNumbers.map(n => (
                                             <li key={n}>
                                                 <label htmlFor={n}>{n}</label>
-                                                <input type="checkbox" value={n} onChange={(e) => handleChange(e, room.price)} />
+                                                <input type="checkbox" value={n} onChange={(e) => handleChange(e, room.price, room._id)} />
                                             </li>
                                         ))}
                                     </ul>

@@ -1,19 +1,18 @@
-GET http://localhost:5000/hotels
+GET http://localhost:5000/admin/edit/637205a98c400e261a2dafa3
 ###
 
-POST http://localhost:5000/search 
+POST http://localhost:5000/admin/edit-hotel/rooms 
 Content-Type: application/json
 
 {
-    "destination": "ha noi",
-    "date": [
-    {
-      "startDate": "2022-11-06T17:00:00.000Z",
-      "endDate": "2022-11-08T17:00:00.000Z",
-      "key": "selection"
-    }
-    ],
-    "options": { "adult": 1, "children": 1, "room": 1 }
+    "id":[
+      "6310e01a8cfecfd90b30ca30",
+      "6311b2a24a642f01423490d6",
+      "6310dd998cfecfd90b30ca28",
+      "6311c0a8f2fce6ea18172fc3",
+      "6311b47b4a642f01423490f4",
+      "6311c083f2fce6ea18172fba"
+    ]
 }
 
 ###

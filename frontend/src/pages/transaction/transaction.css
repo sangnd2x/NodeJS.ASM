@@ -1,4 +1,4 @@
-.header {
+.transaction-header {
     background-color: #003580;
     color: white;
     display: flex;
@@ -20,7 +20,7 @@
 .headerList {
     display: flex;
     gap: 40px;
-    margin-bottom: 50px;
+    margin: 50px;
 }
 
 .headerListItem {

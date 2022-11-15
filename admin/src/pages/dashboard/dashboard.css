@@ -1,4 +1,4 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
 }
@@ -7,22 +7,61 @@ li {
     list-style: none;
 }
 
-.info {
-    margin: 20px auto;
-}
-
 .nav>h3 { 
-    margin: 10px 0px 10px 25px;
+    margin: 10px 0px 10px 40px;
 }
 
-.home__container {
+.dashboard__container {
     display: flex;
 }
 
-.info__container {
+.dashboardInfo {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboardInfo__board {
     margin: 20px;
     box-shadow: 5px 5px 15px lightgray;
     padding: 30px 20px 20px 20px;
+}
+
+.dashboardInfo__board-items{
+    display: flex;
+    float: left;
+    width: 100%;
+}
+
+.dashboardInfo__board-item {
+    float: left;
+    width: 24%;
+    height: 100%;
+    margin: auto;
+    box-shadow: 5px 5px 15px lightgray;
+}
+
+.dashboardInfo__board-item>h4{
+    margin: 20px 0px 20px 20px;
+}
+
+.dashboardInfo__board-item>p {
+    margin-left: 20px;
+    font-size:x-large;
+}
+
+.dashboardInfo__board-item>span {
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.dashboardInfo__board-table__status {
+    padding: 5px;
+    background-color: #F5B9AC;
+    color: #0E820A;
+    border-radius: 5px;
+    text-transform: capitalize;
 }
 
 table { 
@@ -32,18 +71,17 @@ table {
     border-collapse: collapse;
 }
 
-tr {
+tbody>tr, thead>tr {
     border: 1px solid lightgray
 }
 
 td, th {
-    padding-right: 15px;
+    padding: 15px 15px 15px 0px;
 }
 
 th>input {
     margin-left: 4px;
 }
-
 
 td {
     padding-left: 5px;
@@ -53,3 +91,11 @@ th>span {
     border-left: 1px solid lightgray;
     margin-right: 5px;
 }
+
+.paging__button {
+    background: none;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+

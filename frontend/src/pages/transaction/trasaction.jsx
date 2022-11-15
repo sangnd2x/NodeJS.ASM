@@ -22,7 +22,7 @@ const TransactionDashboard = () => {
     const [hotel, setHotel] = useState(location.state.hotel);
     const [roomBooked, setRoomBooked] = useState(location.state.roomNumber);
 
-    console.log(transactions);
+    // console.log(transactions);
 
     useEffect(() => {
         const data = {
@@ -30,7 +30,7 @@ const TransactionDashboard = () => {
         };
 
         const post = () => {
-            fetch('http://localhost:5000/transaction', {
+            fetch('http://localhost:5000/transactions', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -48,7 +48,7 @@ const TransactionDashboard = () => {
     return (
         <div>
             <Navbar user={user} />
-            <div className="header">
+            <div className="transaction-header">
                 <div className="headerList">
                     <div className="headerListItem active">
                         <FontAwesomeIcon icon={faBed} />
@@ -90,7 +90,7 @@ const TransactionDashboard = () => {
                         {transactions.map((trans, i) => (
                             <tr key={i}>
                                 <td>{i + 1}</td>
-                                <td>{hotel.name}</td>
+                                <td>{trans.hotel.name}</td>
                                 <td>{trans.room.join(',')}</td>
                                 <td>{trans.dateStart.replace(/T.*/,'').split('-').reverse().join('/')} - {trans.dateEnd.replace(/T.*/,'').split('-').reverse().join('/')}</td>
                                 <td>${trans.price}</td>

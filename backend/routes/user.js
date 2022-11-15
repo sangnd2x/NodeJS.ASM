@@ -1,6 +1,5 @@
 const path = require('path');
 const express = require('express');
-const Auth = require('../models/auth');
 
 const userController = require('../controllers/user');
 
@@ -16,6 +15,18 @@ router.post('/login', userController.login);
 router.post('/reservation', userController.makeReservation);
 
 // Fetch transaction
-router.post('/transaction', userController.fetchTransaction);
+router.post('/transactions', userController.fetchTransaction);
+
+// Admin Loging
+router.post('/admin/login', userController.adminLogin);
+
+// Admin fetch transactions
+router.get('/admin/transactions', userController.adminFetchTransaction);
+
+// Admin fetch users
+router.get('/admin/users', userController.adminFetchUsers);
+
+// Admin fetch latest transactions
+router.get('/admin/latest-transactions', userController.adminFetchLatestTransactions);
 
 module.exports = router;

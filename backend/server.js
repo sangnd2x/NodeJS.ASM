@@ -5,7 +5,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoute = require('./routes/user');
 const hotelRoute = require('./routes/hotel');
-const isAuthorized = require('./models/auth').isAuthorized;
 const User = require('./models/user');
 
 const server = express();

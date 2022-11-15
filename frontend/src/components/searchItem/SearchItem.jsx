@@ -8,8 +8,6 @@ const SearchItem = (props) => {
   const options = props.options
   const navigate = useNavigate();
 
-  console.log(hotel, date, user);
-
   const handleClick = () => {
     navigate(`/hotels/${props.hotel._id}`, { state: { hotel, date, user, options } });
   }

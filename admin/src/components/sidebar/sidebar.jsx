@@ -17,34 +17,48 @@ const Sidebar = () => {
           <div>
             <p className="title">MAIN</p>
             <li>
-              <FaThLarge className="icon"/>
-              <span>Dashboard</span>
+              <a href="/dashboard">
+                <FaThLarge className="icon"/>
+                <span>Dashboard</span>
+              </a>
             </li>
             <p className="title">LISTS</p>
             <li>
-              <FaUser className="icon"/>
-              <span>Users</span>
+              <a href="/users">
+                <FaUser className="icon"/>
+                <span>Users</span>
+              </a>
             </li>
             <li>
-              <FaHotel className="icon"/>
-              <span>Hotels</span>  
+              <a href="/hotels">
+                <FaHotel className="icon"/>
+                <span>Hotels</span>  
+              </a>
             </li>
             <li>
-              <FaBed className="icon"/>
-              <span>Rooms</span>
+              <a href="/rooms">
+                <FaBed className="icon"/>
+                <span>Rooms</span>
+              </a>
             </li>
             <li>
-              <FaMoneyCheckAlt className="icon"/>
-              <span>Transaction</span>
+              <a href="/transactions">
+                <FaMoneyCheckAlt className="icon"/>
+                <span>Transaction</span>
+              </a>
             </li>
             <p className="title">NEW</p>
             <li>
-              <FaHotel className="icon"/>
-              <span>New Hotel</span>
+              <a href="/add-hotel">
+                <FaHotel className="icon"/>
+                <span>New Hotel</span>
+              </a>
             </li>
             <li>
-              <FaBed className="icon"/>
-              <span>New Room</span>
+              <a href="/add-room">
+                <FaBed className="icon"/>
+                <span>New Room</span>
+              </a>
             </li>
             <p className="title">USER</p>
             <li onClick={() => logout()}>

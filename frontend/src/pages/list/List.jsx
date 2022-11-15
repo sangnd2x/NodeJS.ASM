@@ -20,7 +20,11 @@ const List = () => {
 
   const [hotels, setHotels] = useState([]);
 
-  console.log(hotels);
+  // console.log('options', options)
+  // console.log('date', date)
+  // console.log('destination', destination)
+
+  // console.log(hotels);
 
   useEffect(() => {
     const data = {
@@ -30,7 +34,10 @@ const List = () => {
     }
 
     axios.post('http://localhost:5000/search', data)
-      .then(res => setHotels(res.data))
+      .then(res => {
+        setHotels(res.data);
+        console.log(res.data);
+      })
       .catch(err => console.log(err));
   }, [])
 
