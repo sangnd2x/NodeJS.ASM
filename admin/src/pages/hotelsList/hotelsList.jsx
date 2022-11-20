@@ -6,45 +6,47 @@ import Sidebar from '../../components/sidebar/sidebar';
 import './hotelsList.css';
 
 const HotelsList = () => {
-    const navigate = useNavigate();
-    const [hotels, setHotels] = useState([]);
-    const [hotelId, setHotelId] = useState('');
-    const [render, setRender] = useState(0);
+  const navigate = useNavigate();
+  const [hotels, setHotels] = useState([]);
+  const [render, setRender] = useState(0);
 
-    useEffect(() => {
-        const fetch = () => {
-        axios('http://localhost:5000/admin/hotels')
-            .then(res => setHotels(res.data))
-            .catch(err => console.log(err));
-            };
+  useEffect(() => {
+      const fetch = () => {
+      axios('http://localhost:5000/admin/hotels')
+          .then(res => setHotels(res.data))
+          .catch(err => console.log(err));
+          };
 
-        fetch();
-    }, [render]);
+      fetch();
+  }, [render]);
 
-    const handleDelete = (id) => {
-        const post = () => {
-            fetch('http://localhost:5000/admin/delete-hotel', {
-                method: 'POST',
-                body: JSON.stringify({ id: id }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => {
-                if (res.status === 400) {
-                    return alert('Cannot Delete! There are unpaid transactions!');
-                } 
-                if (res.status === 200) {
-                    alert('Are you sure?');
-                    return setRender(prev => prev + 1);
-                }
-            }).catch(err => console.log(err));
+  const handleDelete = (id) => {
+    const post = () => {
+      fetch('http://localhost:5000/admin/delete-hotel', {
+        method: 'POST',
+        body: JSON.stringify({ id: id }),
+        headers: {
+          'Content-Type': 'application/json'
         }
+      }).then(res => {
+        if (res.status === 400) {
+          return alert('Cannot Delete! There are unpaid transactions!');
+        }
+        if (res.status === 200) {
+          return setRender(prev => prev + 1);
+        }
+      }).catch(err => console.log(err));
+    }
 
-        post();
-    };
+    if (window.confirm('Are you sure?')) {
+      post();
+    } else {
+      return
+    }
+  };
     
     const handleAddNew = () => {
-        navigate('/edit-hotel');
+        navigate('/add-hotel');
     }
 
     const handleEdit = (id) => {

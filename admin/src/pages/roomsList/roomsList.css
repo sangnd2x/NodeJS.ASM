@@ -28,6 +28,7 @@ li {
     flex-direction: column;
     justify-items: center;
     align-content: center;
+    margin: 30px;
 }
 
 .roomInfo__board {

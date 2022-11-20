@@ -148,20 +148,21 @@ exports.adminDeleteRoom = (req, res, next) => {
     const {id} = req.body;
     console.log(id);
     Room
-        .findOne({ _id: id })
-        .then(room => {
-            Transaction
-                .find({ room: { $in: room.roomNumbers } })
-                .then(trans => {
-                    if (trans.length > 0) {
-                        res.status(400).send(JSON.stringify({message : 'Cannot delete room! There is unpaid transaction with this room!'}))
-                    } else {
-                        room.delete();
-                        res.status(200).send(JSON.stringify({ message: 'Room deleted' }));
-                    }
-                })
-        })
-        .catch(err => console.log(err));
+      .findOne({ _id: id })
+      .then(room => {
+        Transaction
+          .find({ room: { $in: room.roomNumbers } })
+          .then(trans => {
+            if (trans.length > 0) {
+              console.log(trans)
+              res.status(400).send(JSON.stringify({message : 'Cannot delete room! There is unpaid transaction with this room!'}))
+            } else {
+              room.delete();
+              res.status(200).send(JSON.stringify({ message: 'Room deleted' }));
+            }
+          })
+      })
+      .catch(err => console.log(err));
 }
 
 exports.adminEditHotel = (req, res, next) => {
@@ -228,25 +229,24 @@ exports.postEditRoom = (req, res, next) => {
     const { title, desc, price, maxPeople, hotel, roomNumbers } = req.body;
     console.log(hotel);
     Room
-        .findOne({ _id: roomId })
-        .then(room => {
-            Hotel
-                .findOne({ name: hotel })
-                .then(hotel => {
-                    if (!hotel.rooms.includes(roomId)) {
-                        hotel.rooms.push(room._id);
-                        hotel.save().then(result => console.log('Added new room to Hotel!'));
-                    } else {
-                        room.title = title;
-                        room.price = price;
-                        room.maxPeople = maxPeople;
-                        room.desc = desc;
-                        room.roomNumbers = typeof(roomNumbers) === 'string' ? roomNumbers.split(',') : roomNumbers;
-                        room.save();
-                        res.status(200).send(JSON.stringify({ message: 'Room Updated!' }));
-                    }
-                });
-        })
-        .catch(err => console.log(err));
+      .findOne({ _id: roomId })
+      .then(room => {
+        room.title = title;
+        room.price = price;
+        room.maxPeople = maxPeople;
+        room.desc = desc;
+        room.roomNumbers = typeof(roomNumbers) === 'string' ? roomNumbers.split(',') : roomNumbers;
+        room.save();
+        res.status(200).send(JSON.stringify({ message: 'Room Updated!' }));
+        Hotel
+          .findOne({ name: hotel })
+          .then(hotel => {
+            if (!hotel.rooms.includes(roomId)) {
+              hotel.rooms.push(room._id);
+              hotel.save().then(result => console.log('Added new room to Hotel!'));
+            } 
+          });
+      })
+      .catch(err => console.log(err));
 }
 
