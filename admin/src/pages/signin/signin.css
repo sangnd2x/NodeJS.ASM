@@ -1,0 +1,44 @@
+.signin-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+.signin-form__center {
+  display: grid;
+  place-items: center;
+}
+
+.signin-form__form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.signin-form__form-control>label {
+  margin: 20px 0px;
+  font-size: large;
+}
+
+.signin-form__form-control>input {
+  height: 50px;
+  width: 350px;
+  font-size: larger;
+}
+
+.signin-form__buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  margin: 20px 0px;
+  background-color: #F8F9FA;
+  height: 40px;
+  width: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #000;
+}
+

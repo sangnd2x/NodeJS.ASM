@@ -11,6 +11,7 @@ const server = express();
 
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/user');
+const adminRoute = require('./routes/admin');
 
 server.use(cors());
 server.use(express.json({
@@ -22,6 +23,7 @@ const MONGO_URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWOR
 
 server.use(authRoute);
 server.use(userRoute);
+server.use('/admin', adminRoute);
 
 mongoose.connect(MONGO_URI)
   .then(result => {

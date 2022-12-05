@@ -1,0 +1,25 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F8F9FA;
+  height: 50px;
+}
+
+.header-logo {
+  margin: 0 50px;
+  font-size: larger;
+  font-family: 'Rajdhani', sans-serif;
+  font-style: italic;
+}
+
+.header-buttons {
+  margin: 0 50px
+}
+
+.header-buttons>a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+

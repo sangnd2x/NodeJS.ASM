@@ -1,0 +1,46 @@
+.sidebar{
+  margin-right: 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+
+li {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+li:hover,
+a:hover
+{
+  cursor: pointer;
+  color: rebeccapurple;
+}
+
+ul {
+  display: flex;
+}
+
+.vertical-line {
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  height: 830px;
+  position: absolute;
+  left: 13%;
+}
