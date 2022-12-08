@@ -16,4 +16,19 @@ router.get('/products', adminController.adminGetProducts);
 // POST search product
 router.post('/search', adminController.adminSearchProduct);
 
+// GET admin fetch all chat rooms
+router.get('/chatrooms', adminController.getAllChatRooms);
+
+// GET room by id
+router.get('/chatrooms/getById', adminController.getChatRoomId);
+
+// GET fetch clients
+router.get('/clients', adminController.fetchClients);
+
+// GET fetch orders
+router.get('/orders', adminController.fetchOrders);
+
+// POST add new product
+router.post('/new-product', adminController.addNewProduct);
+
 module.exports = router;

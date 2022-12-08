@@ -1,0 +1,52 @@
+.dashboard-container {
+  display: flex;
+}
+
+.dashboard-main {
+  margin: 10px auto;
+}
+
+.dashboard-items {
+  display: flex;
+}
+
+.dashboard-items-item {
+  border: 1px solid black;
+  width: 100%;
+  padding: 10px;
+  margin: 5px
+}
+
+.dashboard-items-item>span {
+  float: right;
+}
+
+
+.dashboard-history {
+  border: 1px solid black;
+  margin-top: 20px;
+}
+
+.dashboard-history>h4 {
+  margin: 20px;
+}
+
+.history-table>table {
+  margin: 10px 20px;
+}
+
+.history-table>table>thead>tr,th,
+.history-table>table>tbody>tr>td 
+{
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 7px 20px;
+}
+
+.history-table>table>tbody>tr>td>button {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 5px;
+  width: 50px;
+  cursor: pointer;
+}

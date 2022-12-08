@@ -1,6 +1,7 @@
 const Product = require('../models/product');
 const User = require('../models/user');
 const Order = require('../models/order');
+const Session = require('../models/session');
 const nodeMailer = require('nodemailer');
 const product = require('../models/product');
 const bcrypt = require('bcryptjs');
@@ -77,5 +78,72 @@ exports.adminSearchProduct = async (req, res, next) => {
     res.status(200).send(results);
   } catch (err) {
     console.log(err)
+  }
+}
+
+exports.getAllChatRooms = async (req, res, next) => {
+  try {
+    const chatRooms = await Session.find();
+    res.status(200).send(chatRooms);
+  } catch (err) {
+    console.log(err);    
+  }
+}
+
+exports.getChatRoomId = async (req, res, next) => {
+  const roomId = req.query.roomId;
+  // console.log(roomId)
+  try {
+    const chatRoom = await Session.findById(roomId);
+    res.status(200).send(chatRoom);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.fetchClients = async (req, res, next) => {
+  try {
+    const users = await User.find();
+    const clients = users.filter(user => user.role === 'Client');
+    res.status(200).send(clients);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+exports.fetchOrders = async (req, res, next) => {
+  try {
+    const orders = await Order.find();
+    let earning = 0;
+    for (let i = 0; i < orders.length; i++) {
+      earning += orders[i].totalBill;
+    }
+    res.status(200).json({ earning: earning, orders: orders });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+exports.addNewProduct = async (req, res, next) => {
+  const { productName, category, price, shortDesc, longDesc } = req.body;
+  const images = req.files.map(file => 'http://localhost:5000/' + file.path);
+  console.log(price)
+  
+  try {
+    const product = new Product({
+      name: productName,
+      category: category,
+      img1: images[0],
+      img2: images[1],
+      img3: images[2],
+      img4: images[3],
+      long_desc: longDesc,
+      short_desc: shortDesc,
+      price: price
+    });
+    const response = await product.save();
+    res.status(200).json({ msg: 'New product added' });
+  } catch (err) {
+    console.log(err);
   }
 }

@@ -1,8 +1,9 @@
 const Product = require('../models/product');
 const User = require('../models/user');
 const Order = require('../models/order');
+const Session = require('../models/session');
 const nodeMailer = require('nodemailer');
-const product = require('../models/product');
+const io = require('../socket')
 
 exports.getAllProducts = async (req, res, next) => {
   try {
@@ -168,4 +169,51 @@ exports.getDetailedHistory = async (req, res, next) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
+
+exports.createNewChatRoom = async (req, res, next) => {
+  try {
+    const session = new Session({
+      user: {
+        name: req.user.fullname,
+        userId: req.user._id
+      },
+      createdDate: new Date(),
+      messages: []
+    });
+
+    const savedSession = await session.save();
+    console.log(savedSession)
+    res.status(200).json({ msg: 'New chat room created', session: savedSession });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.addMessage = async (req, res, next) => {
+  const { roomId, message } = req.body;
+  // console.log(roomId);
+
+  try {
+    const chatRoom = await Session.findById(roomId);
+    // console.log(chatRoom)
+    const addedMessage = await chatRoom.addMessage(message);
+    io.getIo().on('send_message', data => {
+      console.log(data)
+    })
+    res.status(200).send(chatRoom);
+  } catch (err) {
+    console.log(err);    
+  }
+};
+
+exports.getChatRoomId = async (req, res, next) => {
+  const roomId = req.query.roomId;
+  // console.log(roomId)
+  try {
+    const chatRoom = await Session.findById(roomId);
+    res.status(200).send(chatRoom);
+  } catch (err) {
+    console.log(err);
+  }
+};

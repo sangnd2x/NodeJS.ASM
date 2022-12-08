@@ -1,19 +1,23 @@
 import axiosClient from './axiosClient';
 
+const headers = {
+  'authorization': 'Bearer ' + localStorage.getItem('token')
+}
+
 const ChatRoomsAPI = {
 	getMessageByRoomId: (roomId) => {
-		const url = `/chatrooms/getById?roomId=${roomId}`;
-		return axiosClient.get(url);
+		const url = `http://localhost:5000/chatrooms/getById?roomId=${roomId}`;
+		return axiosClient.get(url, {headers});
 	},
 
 	createNewRoom: () => {
-		const url = `/chatrooms/createNewRoom`;
-		return axiosClient.post(url);
+		const url = `http://localhost:5000/chatrooms/createNewRoom`;
+		return axiosClient.post(url, {}, {headers});
 	},
 
 	addMessage: (body) => {
-		const url = `/chatrooms/addMessage`;
-		return axiosClient.put(url, body);
+		const url = `http://localhost:5000/chatrooms/addMessage`;
+		return axiosClient.put(url, body, {headers});
 	},
 };
 

@@ -12,12 +12,12 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await axios.get('http://localhost:5000/admin/products')
+      const response = await axios.get('https://asm3-server.onrender.com/admin/products')
       // console.log(response.data)
       setProducts(response.data)
     }
 
-    fetchProducts()
+    fetchProducts();
   }, [searched])
 
   const search = (e) => {
@@ -33,7 +33,7 @@ const Products = () => {
     }
 
     const postSearch = async () => {
-      const response = await axios.post('http://localhost:5000/admin/search', data);
+      const response = await axios.post('https://asm3-server.onrender.com/admin/search', data);
       console.log(response.data);
       setSearchProducts(response.data);
       setSearched(!searched)
@@ -75,7 +75,7 @@ const Products = () => {
                       <td>{product.category}</td>
                       <td>
                         <button className='update-btn'>Update</button>
-                        <button className='edit-btn'>Edit</button>
+                        <button className='edit-btn'>Delete</button>
                       </td>
                     </tr>
                   )) : searchProducts.map(product => (

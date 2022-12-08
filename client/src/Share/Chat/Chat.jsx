@@ -6,14 +6,15 @@ import ChatRoomsAPI from '../../API/ChatRoomsAPI';
 import { useSelector } from 'react-redux';
 
 import io from 'socket.io-client';
-const socket = io('http://54.254.177.24:5000', { transports : ['websocket']});
+const socket = io('http://localhost:5000', { transports : ['websocket']});
 
 function Chat(props) {
 	const [activeChat, setActiveChat] = useState(false);
 	const [textMessage, setTextMessage] = useState('');
 	const [message, setMessage] = useState();
 	const [roomId, setRoomId] = useState(localStorage.getItem('njs_asm3_roomId') || '');
-
+  console.log('roomID', roomId)
+  
 	//Get id_user từ redux khi user đã đăng nhập
 	const [load, setLoad] = useState(false);
 
@@ -23,7 +24,8 @@ function Chat(props) {
 	};
 
 	const onChangeText = (e) => {
-		setTextMessage(e.target.value);
+    setTextMessage(e.target.value);
+    console.log('message', textMessage)
 	};
 
 	const handlerSend = async () => {
@@ -48,9 +50,10 @@ function Chat(props) {
 
 		// Check if roomId is null then create new Room
 		if (!roomId) {
-			const newRoomData = await ChatRoomsAPI.createNewRoom();
-			setRoomId(newRoomData._id);
-			localStorage.setItem('njs_asm3_roomId', newRoomData._id);
+      const newRoomData = await ChatRoomsAPI.createNewRoom();
+      console.log(newRoomData.session._id);
+			setRoomId(newRoomData.session_id);
+			localStorage.setItem('njs_asm3_roomId', newRoomData.session._id);
 		}
 		
 		const data = {
@@ -71,7 +74,8 @@ function Chat(props) {
 
 	const fetchData = async () => {
 		const response = await ChatRoomsAPI.getMessageByRoomId(roomId);
-		setMessage(response.content);
+		setMessage(response.messages);
+		console.log(response.messages);
 	};
 
 	// Hàm này dùng để load dữ liệu message của user khi user gửi tin nhán
@@ -138,31 +142,32 @@ function Chat(props) {
 								</h4>{' '}
 								<a className='btn btn-xs btn-secondary' href='#'>
 									Let's Chat App
-								</a>
+                </a>
+                <button onClick={onChat}>x</button>
 							</div>
 							<div className='ps-container ps-theme-default ps-active-y fix_scoll'>
 								{message &&
-									message.map((value) =>
+									message.map((value, i) =>
 										!value.is_admin ? (
 											<div
 												className='media media-chat media-chat-reverse'
-												key={value.id}>
+												key={i}>
 												<div className='media-body'>
-													<p>You: {value.message}</p>
+													<p>You: {value}</p>
 												</div>
 											</div>
 										) : (
 											<div
 												className='media media-chat'
-												key={value.id}>
+												key={i}>
 												{' '}
 												<img
 													className='avatar'
 													src='https://img.icons8.com/color/36/000000/administrator-male.png'
 													alt='...'
 												/>
-												<div className='media-body' key={value.id}>
-													<p>Cộng tác viên: {value.message}</p>
+												<div className='media-body' key={i}>
+													<p>Cộng tác viên: {value}</p>
 												</div>
 											</div>
 										)

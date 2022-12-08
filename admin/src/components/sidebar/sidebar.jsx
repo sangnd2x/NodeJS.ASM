@@ -30,6 +30,11 @@ const Sidebar = () => {
                 <span>New Product</span>  
               </a>
             </li>
+            <li>
+              <a href="/chatrooms">
+                <span>Chat</span>  
+              </a>
+            </li>
             <p className="title">USER</p>
             <li onClick={() => logout()}>
               <span>Sign Out</span>

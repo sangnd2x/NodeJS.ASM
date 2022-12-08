@@ -1,0 +1,29 @@
+.addProduct-container {
+  display: flex;
+}
+
+.addProduct {
+  margin: auto;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.form-control>input {
+  margin-top: 10px;
+  height: 40px;
+  width: 1000px;
+}
+
+.form-control>button {
+  width: 100px;
+  height: 40px;
+  background-color: #5E74E8;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}

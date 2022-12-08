@@ -1,0 +1,65 @@
+.chatrooms-container {
+  display: flex;
+}
+
+.chatrooms {
+  display: flex;
+}
+
+.chatrooms-navigation {
+  border: 1px solid black;
+  align-items: center;
+  width: 250px;
+}
+
+.chatrooms-navigation>input {
+  height: 30px;
+  width: 170px;
+  margin: 10px;
+}
+
+.room-id>button {
+  margin-left: 10px;
+  background-color: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.chatrooms-navigation>p {
+  margin-left: 10px;
+}
+
+.messages-display {
+  border: 1px solid black;
+  height: 600px;
+  width: 1000px;
+  clear: both;
+  display: table;
+}
+
+.client {
+  float: left;
+}
+
+.admin {
+  float: right;
+}
+
+.send-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.send-message>input {
+  border: none;
+  width: 950px;
+  height: 50px;
+}
+
+.icon {
+  width: 50px
+}

@@ -25,4 +25,15 @@ router.get('/histories', jwtAuth, userController.getHistory);
 // Get user's order detailed history
 router.get('/histories/:orderId', jwtAuth, userController.getDetailedHistory);
 
+// POST create new chat room
+router.post('/chatrooms/createNewRoom', jwtAuth, userController.createNewChatRoom);
+
+// GET chat room id
+router.get('/chatrooms/getById', jwtAuth, userController.getChatRoomId);
+
+// PUT add message to chat room
+router.put('/chatrooms/addMessage', jwtAuth, userController.addMessage);
+
+
+
 module.exports = router;
